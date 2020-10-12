@@ -18,10 +18,10 @@ class Animal extends Model
         return $query->where('age', '>', 5);
     }
 
-    //events
-    //Holy ****
+
+    //is Working ;-)
     // protected $dispatchesEvents = [
-    //     'saved' => AnimalNew::class,
+    //     'retrieved' => AnimalNew::class,
     // ];
 
 }

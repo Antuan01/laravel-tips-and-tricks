@@ -21,9 +21,9 @@ class AnimalNew
      */
     public $data;
 
-    public function __construct($animal)
+    public function __construct()
     {
-        $this->data = $animal;
+        
     }
 
     /**

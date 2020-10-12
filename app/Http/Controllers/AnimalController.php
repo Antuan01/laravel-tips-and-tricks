@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use App\Events\AnimalNew;
 
 class AnimalController extends Controller
 {
@@ -14,7 +15,12 @@ class AnimalController extends Controller
      */
     public function index()
     {
+        //Both's are working ;-)
+
+        // event(new AnimalNew());
+        // AnimalNew::dispatch();
         return response(Animal::old()->get());//scoped
+
     }
 
     /**
