@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CacheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use App\Http\Controllers\AnimalController;
 Route::resources([
     'animal' => AnimalController::class,
     'product' => ProductController::class,
+    'cache' => CacheController::class,
 ]);
 
 // Route::apiResources([

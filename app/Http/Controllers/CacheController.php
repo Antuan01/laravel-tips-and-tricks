@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Animal;
-use App\Events\AnimalNew;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
-class AnimalController extends Controller
+class CacheController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,19 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //Both's are working ;-)
 
-        // event(new AnimalNew());
-        AnimalNew::dispatch();
-        return response(Animal::old()->get());//scoped
+        if (Cache::has('count')) {
+            return response(Cache::get('count'));
+        }
 
+        $response = Http::get('https://yts.mx/api/v2/list_movies.json?limit=10');
+
+        $count = $response->json()['data']['movie_count'];
+
+        Cache::put('count', $count, 150);
+
+        return response($count);
+        // dd($response->json()['data']['movie_count']);
     }
 
     /**
@@ -31,9 +38,7 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        Animal::create($request->all());
-
-        return response("ar fine");
+        //
     }
 
     /**

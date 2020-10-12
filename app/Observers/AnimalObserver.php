@@ -15,7 +15,7 @@ class AnimalObserver
      */
     public function created(Animal $animal)
     {
-        TelegramMessageJob::dispatch()->delay(now()->addMinutes(1));
+        // TelegramMessageJob::dispatch()->delay(now()->addMinutes(1));
 
         // dispatch(new TelegramMessageJob())->delay(now()->addMinutes(1));
     }
