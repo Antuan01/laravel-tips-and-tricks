@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Animal;
-use Illuminate\Support\Facades\Http;
+use App\Jobs\TelegramMessageJob;
 
 class AnimalObserver
 {
@@ -15,21 +15,9 @@ class AnimalObserver
      */
     public function created(Animal $animal)
     {
-        // $response = Http::get('http://test.com');
+        TelegramMessageJob::dispatch()->delay(now()->addMinutes(1));
 
-        $url = 'https://api.telegram.org/bot923097738:AAFr4e2s2UsR-mWrDI9rVmHCjegwUCTMGzI/sendPhoto';
-
-        //918926707
-
-        $options = [            
-                'chat_id' => '229728941',
-                'caption' => 'Que hermosa la naturaleza',
-                'photo' => 'https://antuan-test.s3.amazonaws.com/Selection_691.png',
-        ];
-
-        $response = Http::asForm()->post($url, $options);
-
-        \Log::info($response->ok() ? "Todo fino" : "ay papa");
+        // dispatch(new TelegramMessageJob())->delay(now()->addMinutes(1));
     }
 
     /**

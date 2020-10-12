@@ -13,7 +13,6 @@ class Animal extends Model
     protected $fillable = ['name', 'age'];
 
     //scoped 
-
     public function scopeOld($query)
     {
         return $query->where('age', '>', 5);
