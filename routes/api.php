@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AnimalController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,8 +17,18 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('test', [ProductController::class, 'index']);
+// Route::get('test', [ProductController::class, 'index']);
+
+Route::resources([
+    'animal' => AnimalController::class,
+    'product' => ProductController::class,
+]);
+
+// Route::apiResources([
+//     'animal' => 'AnimalController',
+//     'product' => 'ProductController'
+//     ]);
