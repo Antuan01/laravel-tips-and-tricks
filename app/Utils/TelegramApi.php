@@ -26,7 +26,7 @@ class TelegramApi
  
      public function sendMessage($tid, $message)
      {
-         $response = Http::post($this->url . 'sendMessage', [
+         $response = Http::asForm()->post($this->url . 'sendMessage', [
                  'chat_id' => $tid,
                  'text' => $message,
                  'parse_mode' => 'HTML',
